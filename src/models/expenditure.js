@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 // Collection name is tests, mongoose converts test to tests when it connects. Collection name as test would not work
-const Expenditure = mongoose.model('expenditure', {
+const Expenditure = mongoose.model('test', {
 
     //EXPENDITURES_DATE: {
     //    type: String,

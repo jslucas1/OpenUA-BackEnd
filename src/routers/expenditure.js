@@ -68,7 +68,7 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.post('/expenditures', async (req, res) => {
+router.get('/expenditures', async (req, res) => {
     try {
 
         const myExpenditure = new Expenditure(req.body);
