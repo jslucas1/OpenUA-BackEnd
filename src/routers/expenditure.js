@@ -51,6 +51,13 @@ router.get('/expenditures/:id', (req, res) => {
 
  })
 
+ router.get('/expenditures/search/home', (req, res) => {
+    Expenditure.find({'EXPENDITURES_PAYEE': 'Ty McElroy'}).then((myExpenditures) => {
+        res.send(myExpenditures);
+    }).catch((e) => {
+        res.status(500).send();
+    })
+})
 
 
 module.exports = router
