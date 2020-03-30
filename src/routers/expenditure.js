@@ -15,61 +15,29 @@ const router = new express.Router()
 //    })
 //})
 
-//router.put('/expenditures/:id', (req, res) => {
-//    const myExpenditure = new Expenditure(req.body);
-//    const myId = myExpenditure._id;
-//    Expenditure.findOneAndUpdate({"_id": myId}, {"$set": {"favorite": myGame.favorite,
-//                                                   "EXPENDITURES_DATE": myExpenditure.EXPENDITURES_DATE,
-//                                                   "EXPENDITURES_SEQ": myExpenditure.EXPENDITURES_SEQ
-//                                                //   continue this pattern for the other fields
-//                                                }}, 
-//        {new: true}).then((myExpenditure) => {
-//        res.send(myExpenditure);
-//    }).catch((e) => {
-//        res.status(500).send();
-//    })
-//})
-
-
-//Update by ID
-//router.put('/expenditures/:id', (req, res) => {
-//    const myExpenditure = new Expenditure(req.body);
-
-
-//    const myId = myExpenditure._id;
-//    Expenditure.findOneAndUpdate({ "_id": myId }, {
-//        "$set": {
-//            "favorite": myGame.favorite,
-//            "EXPENDITURES_DATE": myExpenditure.EXPENDITURES_DATE,
-//            "EXPENDITURES_SEQ": myExpenditure.EXPENDITURES_SEQ
-//            //   continue this pattern for the other fields
-//        }
-//    },
-//        { new: true }).then((myExpenditure) => {
-//            res.send(myExpenditure);
-//        }).catch((e) => {
-//            res.status(500).send();
-//        })
-//})
-
-
-
-// Gets all expenditures
-//router.get('/expenditures', (req, res) => {
-//    Expenditure.find({}).then((myExpenditures) => {
-//        res.send(myExpenditures);
-//    }).catch((e) => {
-//        res.status(500).send();
-//    })
-//})
-
-
-
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
 router.get('/expenditures', async (req, res) => {
     try {
+
+        //var category = req.query.category
+        var payees = req.query.payees 
+        //var amounts = req.query.amounts
+        //var transNumber = req.query.transNumber
+        //var startDate = req.query.startDate
+        //var poNumber = req.query.poNumber
+        //var checkNumber = req.query.checkNumber
+        //var agency = req.query.agency
+        //var fundingSource = req.query.fundingSource
+        //var checkNumber = req.query.checkNumber
+        //var endDate = req.query.endDate
+        
+
+  
+
+
+
 
         const myExpenditure = new Expenditure(req.body);
         // const myId = myExpenditure._id;
@@ -97,20 +65,15 @@ router.get('/expenditures', async (req, res) => {
         //var fPeriod = myExpenditure.EXPENDITURES_FPERIOD;
         //var source = myExpenditure.EXPENDITURES_SOURCE;
         //fPeriod = null;
-        //console.log(source)
-        x = "";
-        y = "";
+    
 
 
-        // const myExpenditures = await Expenditure.find({ EXPENDITURES_SOURCE: source, EXPENDITURES_FPERIOD: fPeriod, EXPENDITURES_FYEAR: fYear, EXPENDITURES_IMPORT_DATE: importDate, EXPENDITURES_RANDOM: random, EXPENDITURES_TRANS_AMOUNT: transAmount, EXPENDITURES_CANCEL_IND: cancelInd, EXPENDITURES_PO_NUMBER: poNumber, EXPENDITURES_DATE: date, EXPENDITURES_SEQ: seq, EXPENDITURES_PAYE: paye, EXPENDITURES_CATEGORY: category, EXPENDITURES_TRANS_AMOUNT: transactionAmount, EXPENDITURES_TRANSACTION_NUMBER: transactionNumber, EXPENDITURES_PO_NUMBER: POnumber, EXPENDITURES_CHECK_NUMBER: checkNumber, EXPENDITURES_AGENCY: agency, EXPENDITURES_FUNDING_SOURCE: fundingSource})
-        // const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_PAYE": paye, "EXPENDITURES_SOURCE": source, $or: [{ "EXPENDITURES_FPERIOD": fPeriod }, { "EXPENDITURES_FPERIOD": { $ne: "" } } ]  } ]  } )
-        //  const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_STARTDATE": { $gte: startDate }, "EXPENDITURES_ENDDATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye }, "EXPENDITURES_SOURCE": { $eq: source, $ne: "" } }] })
-        // const myExpenditures = await Expenditure.find({ $or: [{ "EXPENDITURES_PAYE": { $eq: paye } }, { "EXPENDITURES_PAYE": { $ne: "" }  } ] } )
+       
         // const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_STARTDATE": { $gte: startDate }, "EXPENDITURES_ENDDATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
 
 
-
-        const myExpenditures = await Expenditure.find({})
+        const myExpenditures = await Expenditure.find({"EXPENDITURES_PAYE": payees})
+       // const myExpenditures = await Expenditure.find({})
         res.send(myExpenditures)
 
     } catch (e) {
