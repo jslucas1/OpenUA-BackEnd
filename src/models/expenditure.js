@@ -88,7 +88,7 @@ const Expenditure = mongoose.model('test', {
     PAYEE: {
         type: String,
         required: false,
-        lowercase: true
+       // lowercase: true
     },
     CATEGORY: {
         type: String,

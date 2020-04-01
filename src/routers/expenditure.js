@@ -18,65 +18,22 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.get('/expenditures', async (req, res) => {
-    try {
+router.get('/expendituress/:payee', async (req, res) => {
+    try {       
 
-        //var category = req.query.category
-
-      //   const payees = req.query.payees 
-        const payees = req.params.payee
-
-        //var amounts = req.query.amounts
-        //var transNumber = req.query.transNumber
-        //var startDate = req.query.startDate
-        //var poNumber = req.query.poNumber
-        //var checkNumber = req.query.checkNumber
-        //var agency = req.query.agency
-        //var fundingSource = req.query.fundingSource
-        //var checkNumber = req.query.checkNumber
-        //var endDate = req.query.endDate
+        // const payee = req.query.payees 
+        const payee = req.params.payee
         
-
-  
-
-
-
-
-      //  const myExpenditure = new Expenditure(req.body);
-        // const myId = myExpenditure._id;
-        //const myId = myExpenditure._id;
-        //console.log(myId)
-        var startDate = myExpenditure.EXPENDITURES_STARTDATE;
-        var endDate = myExpenditure.EXPENDITURES_ENDDATE;
-        //var category = myExpenditure.EXPENDITURES_CATEGORY;
-        var paye = myExpenditure.EXPENDITURES_PAYE;
-        //var transAmount = myExpenditure.EXPENDITURES_TRANS_AMOUNT;
-
-        //var date = myExpenditure.EXPENDITURES_DATE;
-        //var seq = myExpenditure.EXPENDITURES_SEQ;
-        //var paye = myExpenditure.EXPENDITURES_PAYE;
-        //var category = myExpenditure.EXPENDITURES_CATEGORY;
-        //var agency = myExpenditure.EXPENDITURES_AGENCY;
-        //var fundingSource = myExpenditure.EXPENDITURES_FUNDING_SOURCE;
-        //var poNumber = myExpenditure.EXPENDITURES_PO_NUMBER;
-        //var checkNumber = myExpenditure.EXPENDITURES_CHECK_NUMBER;
-        //var cancelInd = myExpenditure.EXPENDITURES_CANCEL_IND;
-        //var transAmount = myExpenditure.EXPENDITURES_TRANS_AMOUNT;
-        //var random = myExpenditure.EXPENDITURES_RANDOM;
-        //var importDate = myExpenditure.EXPENDITURES_IMPORT_DATE;
-        //var fYear = myExpenditure.EXPENDITURES_FYEAR;
-        //var fPeriod = myExpenditure.EXPENDITURES_FPERIOD;
-        //var source = myExpenditure.EXPENDITURES_SOURCE;
-        //fPeriod = null;
-    
+        var myVar = "Jacquelin" + " " + "Paige" + " " + "Sims"
 
 
        
         // const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_STARTDATE": { $gte: startDate }, "EXPENDITURES_ENDDATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
 
-
-        const myExpenditures = await Expenditure.find({"EXPENDITURES_PAYE": payees})
+        console.log(payee)
+        const myExpenditures = await Expenditure.find({ "PAYEE": payee  })
        // const myExpenditures = await Expenditure.find({})
+       
         res.send(myExpenditures)
 
     } catch (e) {
