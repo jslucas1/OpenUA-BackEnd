@@ -18,7 +18,7 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.get('/expendituress/:payee', async (req, res) => {
+router.get('/expenditures/:payee', async (req, res) => {
     try {       
 
         // const payee = req.query.payees 
@@ -44,18 +44,18 @@ router.get('/expendituress/:payee', async (req, res) => {
 
 
  // Gets expenditures by id
-router.get('/expenditures/:id', (req, res) => {
-   const _id = req.params.id;
-   Expenditure.findById(_id).then((myExpenditure) => {
-       if(!myExpenditure) {
-           return res.status(404).send();
-       } 
-       res.send(myExpenditure)
-   }).catch((e) => {
-       res.status(500).send();
-   })
+//router.get('/expenditures/:id', (req, res) => {
+//   const _id = req.params.id;
+//   Expenditure.findById(_id).then((myExpenditure) => {
+//       if(!myExpenditure) {
+//           return res.status(404).send();
+//       } 
+//       res.send(myExpenditure)
+//   }).catch((e) => {
+//       res.status(500).send();
+//   })
 
-})
+//})
 
  router.get('/expenditures/search/home', (req, res) => {
     Expenditure.find({'EXPENDITURES_PAYEE': 'Ty McElroy'}).then((myExpenditures) => {
