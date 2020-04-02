@@ -73,9 +73,8 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         // const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_STARTDATE": { $gte: startDate }, "EXPENDITURES_ENDDATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
 
        
-        const myExpenditures = await Expenditure.find({
-            "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
-        
+     //   const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
+        const myExpenditures = await Expenditure.find({ "PAYEE": payee })
        // const myExpenditures = await Expenditure.find({})
        
         res.send(myExpenditures)
