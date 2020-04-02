@@ -23,6 +23,7 @@ router.get('/expenditures/:payee', async (req, res) => {
 
         // const payee = req.query.payees 
         // /:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding
+
         var payee = req.params.payee
         var amount = req.params.amount 
         var transactionNumber = req.params.transactionNumber
