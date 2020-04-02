@@ -18,43 +18,63 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.get('/expenditures/:payee/:amount', async (req, res) => {
+router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding', async (req, res) => {
     try {
 
         // const payee = req.query.payees 
 
         var payee = req.params.payee
         var amount = req.params.amount 
+        var transactionNumber = req.params.transactionNumber
+        var poNumber = req.params.poNumber
+        var checkNumber = req.params.checkNumber
+        var agency = req.params.agency
+        var funding = req.params.funding
 
-        if (req.params.amount === "")
+        if (payee === "*")
         {
-            var amount = "null"
-        }
-        else
-        {
-            var amount = req.params.amount
-          
-        }     
-      
-        //if (payee = "")
-        //{
-        //    payee = { $exists: true }
+            payee = { $exists: true }
            
-        //}
-        if (amount === "null")
+        }
+
+        if (amount === "*")
         {
             amount =  { $exists: true } 
             
         } 
 
+        if (transactionNumber === "*") {
+            transactionNumber = { $exists: true }
 
+        } 
 
+        if (poNumber === "*") {
+            poNumber = { $exists: true }
+
+        }
+
+        if (checkNumber === "*") {
+            checkNumber = { $exists: true }
+
+        }
+
+        if (agency === "*") {
+            agency = { $exists: true }
+
+        }
+
+        if (funding === "*") {
+            funding = { $exists: true }
+
+        }
+   
         var myVar = "Jacquelin" + " " + "Paige" + " " + "Sims"
                       
         // const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_STARTDATE": { $gte: startDate }, "EXPENDITURES_ENDDATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
 
        
-        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount })
+        const myExpenditures = await Expenditure.find({
+            "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
         
        // const myExpenditures = await Expenditure.find({})
        
