@@ -18,7 +18,7 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.get('/expenditures/:payee/:agency', async (req, res) => {
+router.get('/expenditures/:payee', async (req, res) => {
     try {
 
         // const payee = req.query.payees 
@@ -75,7 +75,7 @@ router.get('/expenditures/:payee/:agency', async (req, res) => {
 
        
      //   const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
-        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "AGENCY": agency })
+        const myExpenditures = await Expenditure.find({ "PAYEE": payee })
        // const myExpenditures = await Expenditure.find({})
        
         res.send(myExpenditures)
