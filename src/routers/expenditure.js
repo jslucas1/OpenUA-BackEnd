@@ -32,39 +32,39 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         var agency = req.params.agency
         var funding = req.params.funding
 
-        if (payee === "*")
+        if (payee === "abc")
         {
             payee = { $exists: true }
            
         }
 
-        if (amount === "*")
+        if (amount === "abc")
         {
             amount =  { $exists: true } 
             
         } 
 
-        if (transactionNumber === "*") {
+        if (transactionNumber === "abc") {
             transactionNumber = { $exists: true }
 
         } 
 
-        if (poNumber === "*") {
+        if (poNumber === "abc") {
             poNumber = { $exists: true }
 
         }
 
-        if (checkNumber === "*") {
+        if (checkNumber === "abc") {
             checkNumber = { $exists: true }
 
         }
 
-        if (agency === "*") {
+        if (agency === "abc") {
             agency = { $exists: true }
 
         }
 
-        if (funding === "*") {
+        if (funding === "abc") {
             funding = { $exists: true }
 
         }
