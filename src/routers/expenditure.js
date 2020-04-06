@@ -18,7 +18,7 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.get('/expenditures/:payee/:amount', async (req, res) => {
+router.get('/expenditures/:payee/:amount/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding', async (req, res) => {
     try {
 
         // const payee = req.query.payees 
@@ -74,8 +74,8 @@ router.get('/expenditures/:payee/:amount', async (req, res) => {
         // const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_STARTDATE": { $gte: startDate }, "EXPENDITURES_ENDDATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
 
        
-     //   const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
-        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount })
+        const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
+       //  const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount })
        // const myExpenditures = await Expenditure.find({})
        
         res.send(myExpenditures)
