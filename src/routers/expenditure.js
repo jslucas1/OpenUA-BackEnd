@@ -18,7 +18,7 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding/:startDate/:endDate', async (req, res) => {
+router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding/:startDate/:endDate/:category', async (req, res) => {
     try {
 
         // const payee = req.query.payees 
@@ -33,6 +33,7 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         var funding = req.params.funding
         var startDate = req.params.startDate
         var endDate = req.params.endDate
+        var category = req.params.category
 
         if (payee === "HJGTSCnullvalue")
         {
@@ -81,6 +82,16 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
 
         }
 
+        if (endDate === "HJGTSCnullvalue") {
+            endDate = { $exists: true }
+
+        }
+
+        if (category === "HJGTSCnullvalue") {
+            category = { $exists: true }
+
+        }
+
 
    
         var myVar = "Jacquelin" + " " + "Paige" + " " + "Sims"
@@ -90,7 +101,7 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
 
        // This works
        // const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
-        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } } ] })
+        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, "CATEGORY": category, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } } ] })
     
        
         res.send(myExpenditures)
