@@ -18,7 +18,7 @@ const router = new express.Router()
 
 
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
-router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding', async (req, res) => {
+router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding/:startDate/:endDate', async (req, res) => {
     try {
 
         // const payee = req.query.payees 
@@ -31,6 +31,8 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         var checkNumber = req.params.checkNumber
         var agency = req.params.agency
         var funding = req.params.funding
+        var startDate = req.params.startDate
+        var endDate = req.params.endDate
 
         if (payee === "HJGTSCnullvalue")
         {
@@ -71,12 +73,13 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
    
         var myVar = "Jacquelin" + " " + "Paige" + " " + "Sims"
                       
-        // const myExpenditures = await Expenditure.find({ $and: [{ "EXPENDITURES_STARTDATE": { $gte: startDate }, "EXPENDITURES_ENDDATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
+        // const myExpenditures = await Expenditure.find({ $and: [{ "DATE": { $gte: startDate }, "DATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
+                                                                                                                                                                                  // db.inventory.find( { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] } )
 
-       
-        const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
-       //  const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount })
-       // const myExpenditures = await Expenditure.find({})
+       // This works
+       // const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
+        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } } ] })
+    
        
         res.send(myExpenditures)
 
