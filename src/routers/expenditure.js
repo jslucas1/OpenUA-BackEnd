@@ -72,12 +72,12 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         }
 
         if (startDate === "HJGTSCnullvalue") {
-            startDate = 00-Jan
+            startDate = "00-Jan"
 
         }
 
         if (endDate === "HJGTSCnullvalue") {
-            endDate = 99-Jan
+            endDate = "99-Jan"
 
         }
 
