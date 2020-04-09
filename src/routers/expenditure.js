@@ -70,6 +70,18 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
             funding = { $exists: true }
 
         }
+
+        if (startDate === "HJGTSCnullvalue") {
+            startDate = 00-Jan
+
+        }
+
+        if (endDate === "HJGTSCnullvalue") {
+            endDate = 99-Jan
+
+        }
+
+
    
         var myVar = "Jacquelin" + " " + "Paige" + " " + "Sims"
                       
