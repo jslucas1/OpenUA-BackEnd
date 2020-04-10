@@ -31,7 +31,7 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         var checkNumber = req.params.checkNumber
         var agency = req.params.agency
         var funding = req.params.funding
-        var category = req.params.category
+        //var category = req.params.category
         var startDate = req.params.startDate
         var endDate = req.params.endDate
 
