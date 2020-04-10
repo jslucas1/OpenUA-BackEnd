@@ -1,79 +1,8 @@
+// Mongoose is an npm package that makes modeling data in mongodb easier
 const mongoose = require('mongoose');
-
 
 // Collection name is tests, mongoose converts test to tests when it connects. Collection name as test would not work
 const Expenditure = mongoose.model('test', {
-
-    //EXPENDITURES_DATE: {
-    //    type: String,
-    //    required: false
-
-    //},
-    //EXPENDITURES_SEQ: {
-    //    type: Number,
-    //    required: false
-
-    //},
-    //EXPENDITURES_PAYEE: {
-    //    type: String,
-    //    required: false
-    //},
-    //EXPENDITURES_CATEGORY: {
-    //    type: String,
-    //    required: false
-
-    //},
-    //EXPENDITURES_AGENCY: {
-    //    type: String,
-    //    required: false
-    //},
-    //EXPENDITURES_FUNDING_SOURCE: {
-    //    type: String,
-    //    required: false
-    //},
-    //EXPENDITURES_TRANSACTION_NUMBER: {
-    //    type: Number,
-    //    required: false
-    //},
-    //EXPENDITURES_PO_NUMBER: {
-    //    type: Number,
-    //    required: false
-    //},
-    //EXPENDITURES_CHECK_NUMBER: {
-    //    type: Number,
-    //    required: false
-    //},
-    //EXPENDITURES_CANCEL_IND: {
-    //    type: String,
-    //    required: false
-    //},
-    //EXPENDITURES_TRANS_AMOUNT: {
-    //    type: Number,
-    //    required: false
-    //},
-    //EXPENDITURES_RANDOM: {
-    //    type: String,
-    //    required: false
-    //},
-    //EXPENDITURES_IMPORT_DATE: {
-    //    type: String,
-    //    required: false
-    //},
-    //EXPENDITURES_FYEAR: {
-    //    type: String,
-    //    required: false
-    //},
-    //EXPENDITURES_FPERIOD: {
-    //    type: Number,
-    //    required: false
-    //},
-    //EXPENDITURES_SOURCE: {
-    //    type: String,
-    //    required: false
-    //}
-
-
-
 
     DATE: {
         type: String,
@@ -88,12 +17,12 @@ const Expenditure = mongoose.model('test', {
     PAYEE: {
         type: String,
         required: false,
-       // lowercase: true
+      
     },
     CATEGORY: {
         type: String,
         required: false,
-        lowercase: true
+      
 
     },
     AGENCY: {
