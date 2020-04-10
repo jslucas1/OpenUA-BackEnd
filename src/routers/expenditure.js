@@ -34,7 +34,7 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         var category = req.params.category
         var startDate = req.params.startDate
         var endDate = req.params.endDate
-        console.log(category)
+
       
 
         if (payee === "HJGTSCnullvalue")
@@ -85,10 +85,10 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         }
 
 
-        if (category === "HJGTSCnullvalue") {
-            category = { $exists: true }
+        //if (category === "HJGTSCnullvalue") {
+        //    category = { $exists: true }
 
-        }
+        //}
 
 
    
