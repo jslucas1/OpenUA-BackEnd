@@ -2,7 +2,10 @@
 const mongoose = require('mongoose');
 
 // Collection name is tests, mongoose converts test to tests when it connects. Collection name as test would not work
+// Creates a model called Expenditure using the mongoose model convention
 const Expenditure = mongoose.model('test', {
+
+    // Attributes of the model
 
     DATE: {
         type: String,
@@ -79,4 +82,5 @@ const Expenditure = mongoose.model('test', {
 
 });
 
+// Exports the model so that other files can use it
 module.exports = Expenditure;

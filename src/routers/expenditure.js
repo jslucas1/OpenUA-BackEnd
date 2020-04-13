@@ -1,10 +1,17 @@
+// Express is an npm package that is used to launch the web server
 const express = require('express')
+// Uses Expenditure model 
 const Expenditure = require('../models/expenditure');
+// Creates an express router to make the API call on
 const router = new express.Router()
+// Use file system API to write errors to a file
+//const fs = require('fs');
 
-// =====================================================
-//                Expenditure flow path
-// =====================================================
+
+
+
+
+// Example of a post call method
 //router.post('/expenditures', (req, res) => {
 //    const myExpenditure = new Expenditure(req.body);
 
@@ -17,12 +24,13 @@ const router = new express.Router()
 
 
 
-// Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, sends back data from database to middle layer
+// Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, 
+// sends back data from database to middle layer
 router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding/:category/:startDate/:endDate', async (req, res) => {
     try {
 
     
-
+        // Takes data sent from the front end through the URL and creates a variable for each search parameter
         var payee = req.params.payee
         var amount = req.params.amount 
         var transactionNumber = req.params.transactionNumber
@@ -35,7 +43,9 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         var endDate = req.params.endDate
 
       
-
+        // If search variable is left blank, a wildcard null value is used because empty strings can't be passed through 
+        // the URL. If a search variable has a null value, the search is done where that search variable simply exists 
+        // instead of searching for a specific value
         if (payee === "HJGTSCnullvalue")
         {
             payee = { $exists: true }
@@ -88,22 +98,30 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
             category = { $exists: true }
 
         }
+        
+        //  Conducts a search in the Expenditure database using all of the search parammeters and sends the result to 
+        //  the variable myExpenditures
+        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } }] })
+
+        
 
 
-   
-        var myVar = "Jacquelin" + " " + "Paige" + " " + "Sims"
-                      
-        // const myExpenditures = await Expenditure.find({ $and: [{ "DATE": { $gte: startDate }, "DATE": { $lte: endDate }, "EXPENDITURES_PAYE": { $eq: paye } }] })
-                                                                                                                                                                                  // db.inventory.find( { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] } )
-
-       // This works
-       // const myExpenditures = await Expenditure.find({    "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding})
-        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, "CATEGORY": category, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } }] })
-       
-       
+        // This API call then sends the reponse from the database back to where ever it was called from
         res.send(myExpenditures)
 
+        //fs.writeFile("C:/Users/carlk/Desktop/OpenBackEnd/LogFile.txt", "Hey there!", function (err) {
+        //    if (err) {
+        //        return console.log(err);
+        //    }
+        //    console.log("The file was saved!");
+        //}); 
+
+        // Catches any errors, prints the error to the console and sends a 500 message error
+        // Include error notepad file with error date time,
     } catch (e) {
+        
+
+
         console.log(e)
         res.status(500).send()
     }
@@ -124,13 +142,7 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
 
 //})
 
- router.get('/expenditures/search/home', (req, res) => {
-    Expenditure.find({'EXPENDITURES_PAYEE': 'Ty McElroy'}).then((myExpenditures) => {
-        res.send(myExpenditures);
-    }).catch((e) => {
-        res.status(500).send();
-    })
-})
+
 
 
 module.exports = router
