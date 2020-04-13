@@ -5,7 +5,7 @@ const Expenditure = require('../models/expenditure');
 // Creates an express router to make the API call on
 const router = new express.Router()
 // Use file system API to write errors to a file
-//const fs = require('fs');
+const fs = require('fs');
 
 
 
@@ -102,27 +102,38 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         //  Conducts a search in the Expenditure database using all of the search parammeters and sends the result to 
         //  the variable myExpenditures
         const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } }] })
-
-        
-
-
+                       
         // This API call then sends the reponse from the database back to where ever it was called from
         res.send(myExpenditures)
 
-        //fs.writeFile("C:/Users/carlk/Desktop/OpenBackEnd/LogFile.txt", "Hey there!", function (err) {
-        //    if (err) {
-        //        return console.log(err);
-        //    }
-        //    console.log("The file was saved!");
-        //}); 
+       
 
         // Catches any errors, prints the error to the console and sends a 500 message error
         // Include error notepad file with error date time,
     } catch (e) {
+
+        var date = new Date();
+
+        var hour = date.getHours();
+        hour = (hour < 10 ? "0" : "") + hour;
+
+        var min = date.getMinutes();
+        min = (min < 10 ? "0" : "") + min;
+
+        var sec = date.getSeconds();
+        sec = (sec < 10 ? "0" : "") + sec;
+
+        var year = date.getFullYear();
+
+        var month = date.getMonth() + 1;
+        month = (month < 10 ? "0" : "") + month;
+
+        var day = date.getDate();
+        day = (day < 10 ? "0" : "") + day;
+
+        var currentTime = year + ":" + month + ":" + day + ":" + hour + ":" + min + ":" + sec;   
         
-
-
-        console.log(e)
+        fs.writeFileSync('C:/OpenBackEnd/LogFile.txt', "Date: " + currentTime + "\n" + "Error: " + e);
         res.status(500).send()
     }
 })
