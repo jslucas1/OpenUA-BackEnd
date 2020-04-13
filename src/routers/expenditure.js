@@ -29,7 +29,6 @@ const fs = require('fs');
 router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding/:category/:startDate/:endDate', async (req, res) => {
     try {
 
-    
         // Takes data sent from the front end through the URL and creates a variable for each search parameter
         var payee = req.params.payee
         var amount = req.params.amount 
@@ -101,7 +100,7 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
         
         //  Conducts a search in the Expenditure database using all of the search parammeters and sends the result to 
         //  the variable myExpenditures
-        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } }] })
+        const myExpenditures = await Expenditure.find({ "PAYEE": payee, "TRANS_AMT": amount, "TRAN_NO": transactionNumber, "PO_NO": poNumber, "CHECK_NO": checkNumber, "AGENCY": agency, "FUNDING": funding, "CATEGORY": category, $and: [{ "DATE": { $gte: startDate } }, { "DATE": { $lte: endDate } }] })
                        
         // This API call then sends the reponse from the database back to where ever it was called from
         res.send(myExpenditures)
