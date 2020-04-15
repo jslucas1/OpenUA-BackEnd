@@ -8,7 +8,8 @@ const Expenditure = mongoose.model('test', {
     // Attributes of the model
 
     DATE: {
-        type: String,
+       // type: String,
+        type: Date,
         required: false
 
     },
