@@ -38,15 +38,15 @@ const Expenditure = mongoose.model('test', {
         required: false
     },
     TRAN_NO: {
-        type: Number,
+        type: String,
         required: false
     },
     PO_NO: {
-        type: Number,
+        type: String,
         required: false
     },
     CHECK_NO: {
-        type: Number,
+        type: String,
         required: false
     },
     CANCEL_IND: {
@@ -54,7 +54,7 @@ const Expenditure = mongoose.model('test', {
         required: false
     },
     TRANS_AMT: {
-        type: Number,
+        type: String,
         required: false
     },
     RANDOM: {
