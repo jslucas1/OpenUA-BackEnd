@@ -8,5 +8,5 @@ const connectionURL = 'mongodb+srv://OpenAdmin:m15C4pst0n3@cluster0-z4nqv.azure.
 mongoose.connect(connectionURL, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
 })
