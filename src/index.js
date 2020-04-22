@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 // Allows server to recognize JSON objects that are sent to it, used for PUT and POST requests
 app.use(express.json());
 
-// App is launched using the expenditure route
+// App is allowed to use the expenditure route
  app.use(expenditureRouter);
 
 // App listens on port 3000 for connections
