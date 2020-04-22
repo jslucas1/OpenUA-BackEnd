@@ -7,29 +7,10 @@ const router = new express.Router()
 // Use file system API to write errors to a file
 const fs = require('fs');
 
-
-
-
-
-// Example of a post call method
-//router.post('/expenditures', (req, res) => {
-//    const myExpenditure = new Expenditure(req.body);
-
-//    myExpenditure.save().then(() => {
-//        res.status(201).send(myExpenditure);
-//    }).catch((e) => {
-//        res.status(400).send(e);
-//    })
-//})
-
-
-
 // Recieves JSON object from the midlle layer, does a search query with variables from the JSON object, 
 // sends back data from database to middle layer
 router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumber/:agency/:funding/:category/:startDate/:endDate', async (req, res) => {
     try {
-
-   
 
         // Takes data sent from the front end through the URL and creates a variable for each search parameter
         var payee = req.params.payee
@@ -45,7 +26,7 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
 
       
         // If search variable is left blank, a wildcard null value is used because empty strings can't be passed through 
-        // the URL. If a search variable has a null value, the search is done where that search variable simply exists 
+        // the URL. If a search variable has a null value, the search is done where that search field simply exists 
         // instead of searching for a specific value
         if (payee === "HJGTSCnullvalue")
         {
@@ -152,6 +133,17 @@ router.get('/expenditures/:payee/:amount/:transactionNumber/:poNumber/:checkNumb
 //       res.status(500).send();
 //   })
 
+//})
+
+// Example of a post call method
+//router.post('/expenditures', (req, res) => {
+//    const myExpenditure = new Expenditure(req.body);
+
+//    myExpenditure.save().then(() => {
+//        res.status(201).send(myExpenditure);
+//    }).catch((e) => {
+//        res.status(400).send(e);
+//    })
 //})
 
 

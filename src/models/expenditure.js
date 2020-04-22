@@ -8,26 +8,20 @@ const Expenditure = mongoose.model('test', {
     // Attributes of the model
 
     DATE: {
-       // type: String,
         type: Date,
         required: false
-
     },
     SEQ: {
         type: Number,
         required: false
-
     },
     PAYEE: {
         type: String,
         required: false,
-      
     },
     CATEGORY: {
         type: String,
         required: false,
-      
-
     },
     AGENCY: {
         type: String,
@@ -77,10 +71,6 @@ const Expenditure = mongoose.model('test', {
         type: String,
         required: false
     }
- 
- 
-    
-
 });
 
 // Exports the model so that other files can use it
